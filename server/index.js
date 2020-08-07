@@ -11,12 +11,14 @@ massive({
     ssl: { rejectUnauthorized: false}
 }).then((dbInstance)=>{
     app.set('db',dbInstance)
+    console.log("Running")
 }).catch((err)=> console.log(err))
 
 app.use(express.json())
 
 app.get('/api/inventory', ctrl.getAll)
 app.post('/api/product', ctrl.create)
+app.delete('/api/product/:id', ctrl.delete)
 
 
 app.listen(SERVER_PORT, ()=> console.log(`${SERVER_PORT} is here!`))

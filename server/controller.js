@@ -20,5 +20,17 @@ module.exports = {
             res.status(500).send({ errorMessage: "We will get right on that!" });
             console.log(err);
           });
-      },       
+      },   
+      delete: (req, res, next) => {
+        const dbInstance = req.app.get("db");
+        const { id } = req.params;
+        // console.log(id)
+        dbInstance
+          .delete_product(id)
+          .then(() => res.sendStatus(200))
+          .catch((err) => {
+            res.status(500).send({ errorMessage: "We will get right on that!" });
+            console.log(err);
+          });
+      },    
 }
