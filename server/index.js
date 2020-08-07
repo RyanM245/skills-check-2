@@ -19,6 +19,7 @@ app.use(express.json())
 app.get('/api/inventory', ctrl.getAll)
 app.post('/api/product', ctrl.create)
 app.delete('/api/product/:id', ctrl.delete)
+app.put('/api/product/:id', ctrl.update)
 
 
 app.listen(SERVER_PORT, ()=> console.log(`${SERVER_PORT} is here!`))

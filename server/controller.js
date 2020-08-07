@@ -33,4 +33,15 @@ module.exports = {
             console.log(err);
           });
       },    
+      update: (req, res, next) => {
+        const dbInstance = req.app.get("db");
+        const { params, query } = req;
+        dbInstance
+          .update_product([params.id, query.desc])
+          .then(() => res.sendStatus(200))
+          .catch((err) => {
+            res.status(500).send({ errorMessage: "We will get right on that!" });
+            console.log(err);
+          });
+      },
 }
