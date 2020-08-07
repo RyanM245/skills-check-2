@@ -15,7 +15,7 @@ massive({
 
 app.use(express.json())
 
-
+app.get('/api/inventory', ctrl.getAll)
 
 
 app.listen(SERVER_PORT, ()=> console.log(`${SERVER_PORT} is here!`))
