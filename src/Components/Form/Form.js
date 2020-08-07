@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
+import axios from 'axios';
 
 class Form extends Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
            name: '',
            price: 0,
@@ -16,7 +17,17 @@ class Form extends Component {
         });
       };
 
-
+      createProduct=(name,price,img) => {
+          axios.post('/api/product', {name,price,img})
+          .then(res => {
+              this.setState({
+                  name: res.data,
+                  price: res.data,
+                  img: res.data
+              })
+              this.props.getAll()
+          }).catch(err => console.log(err))
+      }
 
     render(){
         const {name,price,img}= this.state
@@ -51,7 +62,13 @@ class Form extends Component {
                     this.setState({name: '', price: 0, img: ''})
                 }}
                 >Cancel</button>
-                <button>Add</button>
+                <button
+                onClick={(e)=> {
+                    e.preventDefault()
+                    this.createProduct(name,price,img)
+                    this.setState({name: '', price: 0, img: ''})
+                }}
+                >Add</button>
             </div>
         )
     }

@@ -11,13 +11,14 @@ class App extends Component {
     super();
     this.state = {
       products: [
-        {
-          name: "",
-          price: 0,
-          img: "",
-        },
+        // {
+        //   name: "",
+        //   price: 0,
+        //   img: "",
+        // },
       ],
     };
+    this.getAll = this.getAll.bind(this)
   }
 
   componentDidMount() {
@@ -37,7 +38,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Form />
+        <Form getAll={this.getAll}/>
         <Dashboard products={products} />
       </div>
     );
